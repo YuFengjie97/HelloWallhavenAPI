@@ -15,6 +15,7 @@ export type Params = {
   sorting?: 'relevance' | 'random' | 'date_added' | 'views' | 'favorites' | 'toplist' | 'hot'
   order?: 'asc' | 'desc',
   ai_art_filter?: string // 0不过滤ai,1过滤ai
+  page?: number
 }
 
 export function search(params: Params) {

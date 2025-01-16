@@ -3,33 +3,10 @@ import { search, type Params } from "./api"
 import { r } from "./utils"
 import historyJosn from '../download/history.json'
 import download from 'download'
+import config from './config.json'
 
+let { apikey, keyword, pageStart, pageEnd } = config
 
-const apikey = 'yGKH5Hrq3MZAHWiS9VZttLWDUUNxErYU'
-/**
- * 如果搜索关键字,直接输入
- * 如果是tagId,输入id:tagId
- */
-const keyword = 'id:2777'
-
-/**
- * categories
- * |general|anime|people|
- * |   1   |  0  |   1  |
- * 
- * purity
- * |sfw|sketchy|nsfw|
- * | 1 |   0   |  1 |
- */
-const params: Params = {
-  apikey,
-  q: keyword,
-  categories: '111',
-  purity: '111',
-  sorting: 'favorites',
-  order: 'desc',
-  ai_art_filter: '0'
-}
 
 const history = historyJosn as { [k in string]: string }
 
@@ -46,6 +23,8 @@ async function downloadImg(url: string, dirPath: string) {
       console.log(`${imgName} download ok`);
     })
     updateHistory(imgName)
+
+    await sleep(1000)
   } catch (e) {
     console.log(`下载失败${imgName}`, e);
   }
@@ -56,6 +35,12 @@ function updateHistory(imgName: string) {
     history[imgName] = 'true'
   }
   fs.writeJSONSync(r('download/history.json'), history, { spaces: 2 })
+}
+
+function sleep(time: number) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, time);
+  })
 }
 
 async function createDir() {
@@ -76,13 +61,25 @@ async function createDir() {
 
 
 ; (async () => {
-  const res = await search(params)
-  const data = res.data.data
 
   const dirPath = await createDir()
 
-  for (let item of data) {
-    await downloadImg(item.path, dirPath)
+  for (let page = pageStart; page <= pageEnd; page += 1) {
+    const params: Params = {
+      apikey,
+      q: keyword,
+      categories: '111',
+      purity: '111',
+      sorting: 'favorites',
+      order: 'desc',
+      ai_art_filter: '0',
+      page
+    }
+    const res = await search(params)
+    const data = res.data.data
+    for (let item of data) {
+      await downloadImg(item.path, dirPath)
+    }
   }
 })()
 
