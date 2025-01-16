@@ -22,3 +22,4 @@ export function search(params: Params) {
     params,
   })
 }
+
