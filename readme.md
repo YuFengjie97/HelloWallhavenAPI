@@ -6,13 +6,31 @@ pnpm i
 ```
 
 #### config.json
-> 在此配置你的`apikey`与关键字与起始页
+> 在此配置你的`apikey`与其他关键参数
 ```js
+/**
+ * q 关键字
+ * 如果是直接搜索关键字,直接输入
+ * 如果是tagId, 形式为id:1111
+ * 
+ * categories
+ * |general|anime|people|
+ * |   1   |  0  |   1  |
+ * 
+ * purity
+ * |sfw|sketchy|nsfw|
+ * | 1 |   0   |  1 |
+ * 
+ * sorting: 'relevance' | 'random' | 'date_added' | 'views' | 'favorites' | 'toplist' | 'hot'
+ */
 {
   "apikey": "yGKH5Hrq3MZAHWiS9VZttLWDUUNxErYU",
-  "keyword": "id:2777",
-  "pageStart": 1,
-  "pageEnd": 1
+  "q": "xxx",
+  "categories": "111", // 默认全选
+  "purity": "111", // 默认全选
+  "sorting": "favorites", // 默认以收藏排序
+  "order": "desc", // 默认降序
+  "ai_art_filter": "0" // 默认不过滤ai
 }
 ```
 
@@ -35,22 +53,5 @@ pnpm run updateHistory
 > api参数与正常访问时的参数格式一致
 
 ```js
-/**
- * categories
- * |general|anime|people|
- * |   1   |  0  |   1  |
- * 
- * purity
- * |sfw|sketchy|nsfw|
- * | 1 |   0   |  1 |
- */
-const params: Params = {
-  apikey,
-  q: keyword,
-  categories: '111', // 默认全选
-  purity: '111', // 默认全选
-  sorting: 'favorites', // 默认以收藏排序
-  order: 'desc', // 默认降序
-  ai_art_filter: '0' // 默认不过滤ai
-}
+
 ```

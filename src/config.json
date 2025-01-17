@@ -1,6 +1,11 @@
 {
   "apikey": "yGKH5Hrq3MZAHWiS9VZttLWDUUNxErYU",
-  "keyword": "id:2777",
+  "q": "id:2777",
+  "categories": "111",
+  "purity": "111",
+  "sorting": "favorites",
+  "order": "desc",
+  "ai_art_filter": "0",
   "pageStart": 1,
-  "pageEnd": 3
+  "pageEnd": 5
 }

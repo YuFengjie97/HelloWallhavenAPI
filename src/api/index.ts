@@ -12,7 +12,7 @@ export type Params = {
   apikey?: string
   categories?: string
   purity?: string
-  sorting?: 'relevance' | 'random' | 'date_added' | 'views' | 'favorites' | 'toplist' | 'hot'
+  sorting: 'relevance' | 'random' | 'date_added' | 'views' | 'favorites' | 'toplist' | 'hot'
   order?: 'asc' | 'desc',
   ai_art_filter?: string // 0不过滤ai,1过滤ai
   page?: number
