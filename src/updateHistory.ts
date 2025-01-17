@@ -7,7 +7,7 @@ import path from 'node:path'
 
   const list = fs.readdirSync(downloadPath)
 
-  const res: { [imgName in string]: string } = {}
+  const res: { [imgName in string]: boolean } = {}
 
   for (let dirname of list) {
     const imgDirPath = path.join(downloadPath, dirname)
@@ -16,7 +16,7 @@ import path from 'node:path'
     if (isDir) {
       const imgList = fs.readdirSync(imgDirPath)
       for (let imgName of imgList) {
-        res[imgName] = 'true'
+        res[imgName] = true
       }
     }
   }
