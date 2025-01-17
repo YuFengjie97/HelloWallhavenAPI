@@ -124,7 +124,7 @@ async function createDir(dirName: string) {
   const dirPath = await createDir(q?.replace(':', "_") || sorting)
 
   for (let page = pageStart; page <= pageEnd; page += 1) {
-    console.log(`--------${page}--------`);
+    console.log(`------page--${page}--------`);
 
     const params: Params = {
       apikey,
