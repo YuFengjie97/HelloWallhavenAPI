@@ -1,4 +1,3 @@
 /node_modules
 /download/**/*.jpg
 /download/**/*.png
-/download/history.json
